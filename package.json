@@ -1,0 +1,29 @@
+{
+  "name": "vue3-vite-microfrontends",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "restart": "yarn stop & yarn build & yarn serve",
+    "stop": "kill-port --port 5000,5001,5002",
+    "clean": "nx run-many --target=clean & rimraf node_modules",
+    "dev-host": "nx develop host",
+    "build-remotes": "nx run-many --target=build -p remote",
+    "serve-remotes": "nx run-many --target=serve -p remote",
+    "preview-remotes": "nx run-many --target=build -p remote && nx run-many --target=serve -p remote"
+  },
+  "devDependencies": {
+    "@originjs/vite-plugin-federation": "^1.2.3",
+    "kill-port": "^2.0.1",
+    "lerna": "^7.1.4",
+    "nx": "^16.6.0",
+    "rimraf": "^5.0.1"
+  },
+  "engines": {
+    "node": ">=18",
+    "yarn": "1.22.19"
+  },
+  "packageManager": "yarn@1.22.19"
+}

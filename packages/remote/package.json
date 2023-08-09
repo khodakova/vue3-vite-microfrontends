@@ -1,0 +1,26 @@
+{
+  "name": "remote",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "develop": "vite --port 7005 --strictPort",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview --port 7005 --strictPort",
+    "clean": "rimraf dist node_modules",
+    "stop": "kill-port --port 7005",
+    "install-deps": "yarn install"
+  },
+  "dependencies": {
+    "pinia": "2.0.21",
+    "vue": "3.2.45",
+    "vue-router": "4.1.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "4.0.0",
+    "typescript": "4.9.4",
+    "vite": "4.0.3",
+    "vue-tsc": "0.39.5",
+    "rimraf": "^5.0.1"
+  }
+}
