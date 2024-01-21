@@ -1,10 +1,7 @@
-import { createApp, defineAsyncComponent } from "vue"
-import {App} from "./app";
-// import { createPinia } from 'pinia'
+import { createApp } from "vue"
+import { App, router } from './app';
 
 const app = createApp(App)
-// const pinia = createPinia()
-
-// app.use(pinia)
+app.use(router)
 
 app.mount("#app")

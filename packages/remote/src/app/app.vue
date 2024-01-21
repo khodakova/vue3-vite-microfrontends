@@ -1,20 +1,34 @@
 <script setup lang="ts">
 
-import RemoteButton from "../shared/ui/remote-button.vue";
+import { watchEffect } from 'vue';
+import { _paths, _prefix, getAppPaths } from '../shared/config/paths';
+import { updateState } from '../shared/lib/update-state';
+import { _routeNames, getRouteNames } from '../shared/config/route-names';
+
+const props = defineProps<{ baseUrl: string }>();
+
+watchEffect(() => {
+  // при изменении префикса обновляем роуты приложения
+  _prefix.value = props.baseUrl ?? '';
+  updateState(_routeNames, getRouteNames(_prefix.value));
+  updateState(_paths, getAppPaths(_prefix.value));
+});
 </script>
 
 <template>
-  <h1>
-    I am RemoteApp
-  </h1>
   <div class="container">
-    <remote-button/>
+    <h1>
+      Это часть приложения - микрофронтенд Remote
+    </h1>
+    <RouterView/>
   </div>
 
 </template>
 
 <style scoped>
 .container {
-  color: blue;
+  border: 3px solid blue;
+  padding: 16px;
+  border-radius: 8px;
 }
 </style>

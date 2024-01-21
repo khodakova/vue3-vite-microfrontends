@@ -2,22 +2,24 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import federation from "@originjs/vite-plugin-federation"
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     federation({
       name: 'remote',
+      filename: 'app.js',
       shared: ['vue','pinia', 'vue-router'],
       exposes: {
         './remote-button': './src/shared/ui/remote-button.vue',
-        './remote-page': './src/pages/remote-page',
+        './remote-page': './src/pages/main-page',
+        './app': './src/app/app.vue',
+        './routes': './src/app/providers/router-provider/routes.ts',
       },
   })
   ],
   base: 'http://localhost:7005',
   build:{
     minify:false,
-    target: ["chrome89", "edge89", "firefox89", "safari15"]
+    target: ["chrome89", "firefox89"]
   }
 })

@@ -1,19 +1,24 @@
 <script setup lang="ts">
-import RemoteButton from 'remote/remote-button'
+import Header from '../widgets/header/ui/header.vue';
+import './styles/styles.scss'
 </script>
 
 <template>
-  <div class="container">
-    <h1>
-      I am Host
-    </h1>
-    <remote-button/>
+  <div class="app-container">
+    <Header/>
+    <h1>Я - главное приложение (хост)</h1>
+    <div>
+      <RouterView/>
+    </div>
   </div>
 
 </template>
 
 <style scoped>
-.container {
-  color: blue;
+.app-container {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 </style>
