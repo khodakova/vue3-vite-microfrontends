@@ -12,7 +12,7 @@ export default defineConfig({
     federation({
       name: 'host',
       remotes: {},
-      shared: ['vue', 'pinia', 'vue-router']
+      shared: ['vue', 'pinia', 'vue-router', 'mitt', 'axios']
   })
   ],
   build:{

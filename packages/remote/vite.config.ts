@@ -8,7 +8,7 @@ export default defineConfig({
     federation({
       name: 'remote',
       filename: 'app.js',
-      shared: ['vue','pinia', 'vue-router'],
+      shared: ['vue','pinia', 'vue-router', 'mitt', 'axios'],
       exposes: {
         './remote-button': './src/shared/ui/remote-button.vue',
         './remote-page': './src/pages/main-page',

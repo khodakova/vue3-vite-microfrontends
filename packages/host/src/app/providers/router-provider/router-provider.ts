@@ -6,6 +6,7 @@ import { createRouter as createVueRouter, createWebHistory, RouteRecordRaw } fro
 // import { ErrorPage } from '@/pages/error-page';
 import { routes } from './routes';
 import { GetMfeDynamicallyResult, getMfeModule } from '../../../shared/lib/mfe/get-mfe-module';
+import { getEmitter } from '../../../shared/config/mitt/get-emitter';
 
 const router = createVueRouter({
     history: createWebHistory(),
@@ -138,6 +139,8 @@ const getRequiredModules = (menu: Section[]) => {
 export default {
     install(app: App) {
         router.install(app);
+        const emitter = app.config.globalProperties.$emitter;
+
         router.beforeResolve(async (to) => {
             if (!isAllMfeResolved) {
                 const menu: Section[] = await fetch('/sections.json')
@@ -150,7 +153,7 @@ export default {
                 const requiredModules = getRequiredModules(menu);
 
                 if (requiredModules.length > 0) {
-                    // emitter.emit('loading', true);
+                    emitter.emit('loading', true);
                     const modules: GetMfeDynamicallyResult[] = [];
 
                     // eslint-disable-next-line no-restricted-syntax
@@ -174,7 +177,10 @@ export default {
                     });
 
                     isAllMfeResolved = true;
-                    // emitter.emit('loading', false);
+                    // для имитации загрузки
+                    setTimeout(() => {
+                        emitter.emit('loading', false);
+                    }, 2000)
                 }
                 await router.replace(to.fullPath);
             }
