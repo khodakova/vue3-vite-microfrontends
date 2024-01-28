@@ -5,17 +5,17 @@ import {_paths} from '../../../shared/config/paths';
 
 <template>
   <div class="page-container">
-    <h2>Я - главная страница микроприложения.</h2>
+    <h3>Я - главная страница микроприложения.</h3>
 
-    <p class="descr">Ссылки осуществляют переход по моим внутренним роутам.</p>
-    <div class="link-container">
-      <RouterLink :to="_paths.ONE_MORE" class="link">
-        ONE MORE PAGE
-      </RouterLink>
-      <RouterLink :to="_paths.ANOTHER" class="link">
-        ANOTHER PAGE
-      </RouterLink>
-    </div>
+<!--    <p class="descr">Ссылки осуществляют переход по моим внутренним роутам.</p>-->
+<!--    <div class="link-container">-->
+<!--      <RouterLink :to="_paths.ONE_MORE" class="link">-->
+<!--        ONE MORE PAGE-->
+<!--      </RouterLink>-->
+<!--      <RouterLink :to="_paths.ANOTHER" class="link">-->
+<!--        ANOTHER PAGE-->
+<!--      </RouterLink>-->
+<!--    </div>-->
 
     <RouterView/>
   </div>

@@ -3,10 +3,6 @@ import vue from '@vitejs/plugin-vue'
 import federation from "@originjs/vite-plugin-federation"
 import svgLoader from 'vite-svg-loader'
 
-// const remotesMap = {
-//   'empty': ''
-// };
-
 export default defineConfig({
   plugins: [
     vue(),

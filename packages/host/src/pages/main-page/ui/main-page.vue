@@ -1,22 +1,11 @@
-<template>
-<div>
-  <h1>
-    Это хостовое приложение
-  </h1>
-  <nav>
-    <RouterLink to="/remote1">
-      Remote 1
-    </RouterLink>
-    <RouterLink to="/remote2">
-      Remote 2
-    </RouterLink>
-  </nav>
+<script setup lang="ts">
 
-</div>
-</template>
-
-<script setup>
 </script>
+<template>
+  <div>
+    <h3>Я - резолвер и сервис-провайдер для всего приложения</h3>
+  </div>
+</template>
 
 <style scoped>
 

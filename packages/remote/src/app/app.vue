@@ -17,9 +17,21 @@ watchEffect(() => {
 
 <template>
   <div class="container">
-    <h1>
-      Это часть приложения - микрофронтенд Remote
-    </h1>
+    <h2>
+      Я - микрофронтенд "remote-1"
+    </h2>
+    <div class="page-container">
+      <p class="descr">Ссылки осуществляют переход по моим внутренним роутам.</p>
+      <div class="link-container">
+        <RouterLink :to="_paths.ONE_MORE" class="link">
+          ONE MORE PAGE
+        </RouterLink>
+        <RouterLink :to="_paths.ANOTHER" class="link">
+          ANOTHER PAGE
+        </RouterLink>
+      </div>
+    </div>
+
     <RouterView/>
   </div>
 
@@ -27,8 +39,30 @@ watchEffect(() => {
 
 <style scoped>
 .container {
-  border: 3px solid blue;
+  border: 2px solid blue;
   padding: 16px;
   border-radius: 8px;
+  background-color: white;
+  box-shadow: 4px 4px 4px rgba(0,0,0,0.2);
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.link-container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.link {
+  /*text-decoration: none;*/
+}
+
+.descr {
+  font-size: 18px;
 }
 </style>

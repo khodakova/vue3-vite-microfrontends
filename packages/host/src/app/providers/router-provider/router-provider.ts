@@ -36,9 +36,7 @@ export default {
         router.install(app);
         const emitter = app.config.globalProperties.$emitter;
 
-
         router.beforeResolve(async to => {
-            emitter.emit('loading', true);
             // определим корневой маршрут
             const rootPath = `/${to.fullPath.split('/')[1]}`;
             // проверим, загружали ли мы до этого этот мфе (или он статично определен в приложении)
@@ -46,6 +44,8 @@ export default {
 
             // если мфе не загружали, попробуем его получить
             if (!isMfeDownloaded) {
+                emitter.emit('loading', true);
+
                 try {
                     const sections: Section[] = await fetch('/sections.json')
                         .then((res) => res.json())
@@ -53,13 +53,12 @@ export default {
                             await router.replace(to.fullPath);
                             return [];
                         });
-
                     const mfeToDownload = sections.find((x) => x.url === rootPath);
+
                     if (!mfeToDownload) return;
 
                     // пытаемся получить составляющие мфе
                     const mfeResult = await getMfeModule(mfeToDownload.appName ?? '', mfeToDownload.url ?? '');
-
                     // если есть результат, значит он есть в манифесте и связь с хостом мфе была осуществлена
                     if (mfeResult) {
                         // добавим мфе как роут, получив его корневой компонент и дочерние роуты
@@ -68,16 +67,16 @@ export default {
                             name: mfeResult?.config.name,
                             component: mfeResult?.config.component,
                             children: mfeResult?.innerRoutes || undefined,
-                            props: { baseUrl: mfeResult?.config.baseUrl ?? ''
-                        },
+                            props: { baseUrl: mfeResult?.config.baseUrl ?? '' },
                         });
-                        // добавляем мфе в перечень существующих в приложении, чтобы не производить повторную загрузку по нему
-                        downloadedMfes.push(rootPath);
 
                         // для имитации загрузки
                         setTimeout(() => {
                             emitter.emit('loading', false);
-                        }, 2000)
+                        }, 1000)
+
+                        // добавляем мфе в перечень существующих в приложении, чтобы не производить повторную загрузку по нему
+                        downloadedMfes.push(rootPath);
 
                         // продолжим навигацию
                         router.replace(to.fullPath);

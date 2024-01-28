@@ -1,16 +1,18 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import federation from "@originjs/vite-plugin-federation"
+import svgLoader from 'vite-svg-loader'
 
 export default defineConfig({
   plugins: [
     vue(),
+    svgLoader(),
     federation({
       name: 'remote',
       filename: 'app.js',
       shared: ['vue','pinia', 'vue-router', 'mitt', 'axios'],
       exposes: {
-        './remote-button': './src/shared/ui/remote-button.vue',
+        './chat-widget': './src/widgets/chat-widget/ui/chat-widget.vue',
         './remote-page': './src/pages/main-page',
         './app': './src/app/app.vue',
         './routes': './src/app/providers/router-provider/routes.ts',
