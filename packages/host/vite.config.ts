@@ -9,8 +9,10 @@ export default defineConfig({
     svgLoader(),
     federation({
       name: 'host',
-      remotes: {},
-      shared: ['vue', 'pinia', 'vue-router', 'mitt', 'axios']
+      remotes: {
+        'empty': 'empty'
+      },
+      shared: ['vue','pinia', 'vue-router', 'axios'],
   })
   ],
   build:{

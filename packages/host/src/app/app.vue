@@ -55,7 +55,6 @@ const AsyncChatWidget = useMfeComponent({ mfeName: 'remote-1', componentName: 'c
     padding: 24px;
     box-shadow: 4px 2px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    border: 2px solid #72be00;
   }
 }
 

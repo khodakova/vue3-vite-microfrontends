@@ -44,9 +44,9 @@ export default {
 
             // если мфе не загружали, попробуем его получить
             if (!isMfeDownloaded) {
-                emitter.emit('loading', true);
-
                 try {
+                    emitter.emit('loading', true);
+
                     const sections: Section[] = await fetch('/sections.json')
                         .then((res) => res.json())
                         .catch(async () => {
@@ -55,7 +55,10 @@ export default {
                         });
                     const mfeToDownload = sections.find((x) => x.url === rootPath);
 
-                    if (!mfeToDownload) return;
+                    if (!mfeToDownload) {
+                        emitter.emit('loading', false);
+                        return;
+                    }
 
                     // пытаемся получить составляющие мфе
                     const mfeResult = await getMfeModule(mfeToDownload.appName ?? '', mfeToDownload.url ?? '');
@@ -83,8 +86,7 @@ export default {
                     }
                 } catch (error) {
                     console.log(error);
-                    // если случилась ошибка, то переведем пользователя на страницу "не найдено"
-                    // await router.replace(paths.NOT_FOUND);
+                    emitter.emit('loading', false);
                 }
             }
         });
