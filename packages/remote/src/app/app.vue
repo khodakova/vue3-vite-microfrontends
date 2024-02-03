@@ -17,9 +17,8 @@ watchEffect(() => {
 
 <template>
   <div class="container">
-    <h2>
-      Я - микрофронтенд "remote-1"
-    </h2>
+    <h2>Я - микрофронтенд "remote-1"</h2>
+
     <div class="page-container">
       <p class="descr">Ссылки осуществляют переход по моим внутренним роутам.</p>
       <div class="link-container">
@@ -39,8 +38,11 @@ watchEffect(() => {
 
 <style scoped>
 .container {
+  display: flex;
+  flex-direction: column;
   border: 2px solid blue;
   padding: 16px;
+  gap: 16px;
   border-radius: 8px;
   background-color: white;
   box-shadow: 4px 4px 4px rgba(0,0,0,0.2);

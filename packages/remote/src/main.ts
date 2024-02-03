@@ -7,14 +7,13 @@ if (process.env.NODE_ENV === 'development') {
     const devApp = createDevApp({
         router,
         slots: {
-            header: h('<div>anything you need</div>'),
-            content: App
+            header: h('div', 'В эмулятор хэдера можно прокинуть какой-угодно контент'),
+            content: h(App)
         }
     });
     devApp.mount('#app')
 } else {
     const app = createApp(App)
     app.use(router)
-
     app.mount("#app")
 }

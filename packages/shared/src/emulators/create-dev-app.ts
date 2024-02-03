@@ -17,8 +17,10 @@ type DevAppOptions = {
 export function createDevApp({ slots, router }: DevAppOptions) {
     const devApp = createApp(h(
         DevWrapper,
+        {},
         {
-            header: slots.header
+            header: slots.header,
+            content: slots.content
         }
     ));
 
