@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "develop": "vite --port 7005 --strictPort",
+    "develop": "vite --port 7015 --strictPort",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview --port 7005 --strictPort",
     "clean": "rimraf dist node_modules",
@@ -19,7 +19,9 @@
   },
   "devDependencies": {
     "@originjs/vite-plugin-federation": "1.3.4",
+    "@types/node": "20.11.16",
     "@vitejs/plugin-vue": "4.0.0",
+    "dev-wrapper": "*",
     "rimraf": "^5.0.1",
     "typescript": "4.9.4",
     "vite": "4.0.3",

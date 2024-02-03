@@ -1,17 +1,28 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "declarationMap": true,
+    "outDir": "dist",
+    "target": "esnext",
     "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "module": "esnext",
+    "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
+    "jsxFactory": "h",
     "sourceMap": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true
+    "lib": ["esnext", "dom"],
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "types": [
+      "vue",
+      "vite/client",
+      "node"
+    ],
+    "rootDir": "src",
+    "importHelpers": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["./src"]
 }
