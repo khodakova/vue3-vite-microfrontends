@@ -13,9 +13,7 @@
   "scripts": {
     "develop": "vite --port 5001 --strictPort",
     "build": "vue-tsc --emitDeclarationOnly && vite build",
-    "serve": "vite preview --port 5001 --strictPort",
     "clean": "rimraf dist node_modules",
-    "stop": "kill-port --port 5001",
     "install-deps": "yarn install"
   },
   "dependencies": {

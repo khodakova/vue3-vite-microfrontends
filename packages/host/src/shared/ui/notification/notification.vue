@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { getEmitter } from '../../config/mitt/get-emitter';
 import { ref } from 'vue';
-import { generateUid } from 'remote/src/shared/lib/generate-uid';
 import NotificationBell from './notification-bell.svg';
 import Cross from './cross.svg';
+import { generateUid } from '../../lib/generate-uid';
 
 const _messages = ref<Array<{ id: string, message: string }>>([])
 const _message = ref<string | null>(null);
@@ -71,6 +71,7 @@ const onClose = (id: string) => {
   &-divider {
     width: 1px;
     height: 100%;
+
     &:before {
       content: '';
       position: absolute;

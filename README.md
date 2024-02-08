@@ -7,17 +7,22 @@
 yarn install
 ```
 
-2. Launch host application
+2. Build dev-wrapper package
+```shell
+yarn run build-dev-wrapper
+```
+
+3. Launch host application
 ```shell
 yarn run dev-host
 ```
 
-3. Build of remote applications
+4. Build of remote applications
 ```shell
 yarn run build-remotes
 ```
 
-4. Launch remote applications
+5Launch remote applications
 ```shell
 yarn run serve-remotes
 ```

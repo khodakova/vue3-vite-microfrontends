@@ -8,7 +8,7 @@ export default defineConfig({
     vue(),
     svgLoader(),
     federation({
-      name: 'remote',
+      name: 'remote1',
       filename: 'app.js',
       shared: ['vue', 'pinia', 'vue-router', 'mitt', 'axios'],
       exposes: {

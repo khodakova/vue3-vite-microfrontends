@@ -2,9 +2,9 @@ import { reactive } from 'vue';
 import { _prefix } from './paths';
 
 export const routeNames = {
-  MAIN: 'remote:main',
-  ONE_MORE: 'remote:one-more',
-  ANOTHER: 'remote:another',
+  MAIN: 'remote1:main',
+  ONE_MORE: 'remote1:one-more',
+  ANOTHER: 'remote1:another',
 };
 
 type RouteNamesKeys = keyof typeof routeNames;

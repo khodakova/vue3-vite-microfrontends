@@ -12,9 +12,9 @@ declare interface RemotesConfig {
   external?: string,
   /** The format of the specified external */
   externalType?: 'url' | 'promise',
-  /** The name of the share scope shared with this remote. */
+  /** The name of the share scope dev-wrapper with this remote1. */
   shareScope?: string,
-  /** the remote format */
+  /** the remote1 format */
   format?: 'esm' | 'systemjs' | 'var',
   /** from */
   from?: 'vite' | 'webpack',

@@ -7,5 +7,14 @@
     "section": [],
     "appName": "remote-1",
     "code": "remote-1"
+  },
+  {
+    "id": 1,
+    "fullName": "remote-2",
+    "shortName": "remote-2",
+    "url": "/remote-2",
+    "section": [],
+    "appName": "remote-2",
+    "code": "remote-2"
   }
 ]

@@ -18,7 +18,8 @@ let savedManifest: ManifestItem[] = [];
  * @returns manifest - массив с данными по МФЕ
  */
 export async function getManifest(): Promise<ManifestItem[]> {
-  if (!savedManifest) {
+
+  if (savedManifest.length === 0) {
     savedManifest = await fetch('/manifest.json', {})
         .then((response) => response.json())
         .catch(() => {
