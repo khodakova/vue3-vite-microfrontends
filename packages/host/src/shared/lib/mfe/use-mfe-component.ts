@@ -6,10 +6,10 @@ import { getManifest, ManifestItem } from './get-manifest';
 // import MfeLoading from './ui/mfe-loading.vue';
 
 type GetMfeComponentProps = {
-    /** Название микрофронта */
-    mfeName: string,
-    /** Название компонента */
-    componentName?: string,
+  /** Название микрофронта */
+  mfeName: string,
+  /** Название компонента */
+  componentName?: string,
 }
 
 /**
@@ -19,42 +19,42 @@ type GetMfeComponentProps = {
  * @returns asyncComponent - в том случае, если он был успешно загружен
  */
 export function useMfeComponent({ mfeName, componentName = 'app' }: GetMfeComponentProps): Ref<Component | undefined> {
-    const manifest = ref<ManifestItem[]>();
+  const manifest = ref<ManifestItem[]>();
 
-    const getAsyncManifest = async () => {
-        manifest.value = await getManifest();
-    };
+  const getAsyncManifest = async () => {
+    manifest.value = await getManifest();
+  };
 
-    if (!manifest.value) {
-        getAsyncManifest();
+  if (!manifest.value) {
+    getAsyncManifest();
+  }
+
+  const mfeFromManifest = computed(() => {
+    if (manifest.value) {
+      const s = manifest.value.find((x) => x.name === mfeName)?.remote;
+      return s;
     }
+    return null;
+  });
 
-    const mfeFromManifest = computed(() => {
-        if (manifest.value) {
-            const s = manifest.value.find((x) => x.name === mfeName)?.remote;
-            return s;
-        }
-        return null;
-    });
+  const asyncComponent = ref<Component>();
 
-    const asyncComponent = ref<Component>();
+  watchEffect(() => {
+    if (mfeFromManifest.value) {
+      // даем знать vite-plugin-federation, что существует указанный МФЕ
+      __federation_method_setRemote(mfeName, {
+        url: mfeFromManifest.value ?? '',
+        format: 'esm',
+        from: 'vite',
+      });
+      // определяем асинхронный компонент на загрузку
+      asyncComponent.value = defineAsyncComponent({
+        loader: () => __federation_method_getRemote(mfeName, `./${componentName}`),
+        // loadingComponent: MfeLoading,
+        // errorComponent: MfeError,
+      });
+    }
+  });
 
-    watchEffect(() => {
-        if (mfeFromManifest.value) {
-            // даем знать vite-plugin-federation, что существует указанный МФЕ
-            __federation_method_setRemote(mfeName, {
-                url: mfeFromManifest.value,
-                format: 'esm',
-                from: 'vite',
-            });
-            // определяем асинхронный компонент на загрузку
-            asyncComponent.value = defineAsyncComponent({
-                loader: () => __federation_method_getRemote(mfeName, `./${componentName}`),
-                // loadingComponent: MfeLoading,
-                // errorComponent: MfeError,
-            });
-        }
-    });
-
-    return asyncComponent;
+  return asyncComponent;
 }

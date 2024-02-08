@@ -10,27 +10,27 @@ import { AnotherPage } from '../../../pages/another-page';
  * @param prefix - префикс передается принудительно для правильного формирования роутов в хосте
  */
 export default function getRoutes(prefix?: string): RouteRecordRaw[] {
-    const appPaths = getAppPaths(prefix);
-    const routeNames = getRouteNames(prefix);
-    return [
+  const appPaths = getAppPaths(prefix);
+  const routeNames = getRouteNames(prefix);
+  return [
+    {
+      path: appPaths.MAIN,
+      component: MainPage,
+      name: routeNames.MAIN,
+      children: [
         {
-            path: appPaths.MAIN,
-            component: MainPage,
-            name: routeNames.MAIN,
-            children: [
-                {
-                    path: appPaths.ONE_MORE,
-                    component: OneMorePage,
-                    name: routeNames.ONE_MORE,
-                },
-                {
-                    path: appPaths.ANOTHER,
-                    component: AnotherPage,
-                    name: routeNames.ANOTHER,
-                },
-            ]
+          path: appPaths.ONE_MORE,
+          component: OneMorePage,
+          name: routeNames.ONE_MORE,
         },
-    ];
+        {
+          path: appPaths.ANOTHER,
+          component: AnotherPage,
+          name: routeNames.ANOTHER,
+        },
+      ],
+    },
+  ];
 }
 
 export const routes = getRoutes();

@@ -1,1 +1,1 @@
-export {default as ChatWidget} from './ui/chat-widget.vue'
+export { default as ChatWidget } from './ui/chat-widget.vue';

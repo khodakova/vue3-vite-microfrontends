@@ -2,6 +2,9 @@ module.exports = {
     extends: [
         'plugin:vue/strongly-recommended',
         '@vue/airbnb',
+        'plugin:import/typescript',
+        'plugin:import/recommended',
+
     ],
     parserOptions: {
         parser: '@typescript-eslint/parser',
@@ -9,6 +12,7 @@ module.exports = {
     plugins: [
         '@typescript-eslint',
         '@stylistic/js',
+        'import',
     ],
     rules: {
         'vue/block-order': ['error', {
@@ -210,7 +214,15 @@ module.exports = {
                 format: ['camelCase', 'UPPER_CASE'],
             },
         ],
-        'filename-rules/match': [2, 'kebab-case'],
+        'import/no-unresolved': [
+            'error',
+            {'ignore': ['__federation__', 'dev-wrapper/styles']}
+        ],
+        'import/extensions': 'off',
+        'import/prefer-default-export': 'off',
+        'import/no-extraneous-dependencies': 'off',
+        'import/no-internal-modules': 'off',
+
     },
     overrides: [
         {

@@ -1,15 +1,15 @@
 import { PathsValues } from '../../config/paths';
 
 export type ManifestItem = {
-    /** Название МФЕ */
-    name: string,
-    /** Персональный путь МФЕ */
-    remote: string,
-    /** Путь МФЕ внутри приложения */
-    appUrl: PathsValues,
+  /** Название МФЕ */
+  name: string,
+  /** Персональный путь МФЕ */
+  remote: string,
+  /** Путь МФЕ внутри приложения */
+  appUrl: PathsValues,
 }
 
-let savedManifest: ManifestItem[] | undefined;
+let savedManifest: ManifestItem[] = [];
 
 /**
  * Асинхронное получение манифеста
@@ -17,10 +17,13 @@ let savedManifest: ManifestItem[] | undefined;
  * Если он уже был загружен, достаем из памяти
  * @returns manifest - массив с данными по МФЕ
  */
-export async function getManifest(): Promise<ManifestItem[] | undefined> {
-    if (!savedManifest) {
-        savedManifest = await fetch('/manifest.json', {}).then((response) => response.json()) || [];
-    }
-    return savedManifest;
+export async function getManifest(): Promise<ManifestItem[]> {
+  if (!savedManifest) {
+    savedManifest = await fetch('/manifest.json', {})
+        .then((response) => response.json())
+        .catch(() => {
+          return []
+        });
+  }
+  return savedManifest;
 }
-
