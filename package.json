@@ -2,6 +2,7 @@
   "name": "vue3-vite-microfrontends",
   "private": true,
   "version": "1.0.0",
+  "type": "module",
   "workspaces": [
     "packages/*"
   ],
@@ -17,15 +18,25 @@
   },
   "devDependencies": {
     "@originjs/vite-plugin-federation": "^1.2.3",
+    "@typescript-eslint/eslint-plugin": "6.21.0",
+    "@typescript-eslint/parser": "6.21.0",
+    "@vue/eslint-config-airbnb": "8.0.0",
+    "dev-wrapper": "*",
+    "eslint": "8.56.0",
+    "eslint-plugin-vue": "9.21.1",
     "kill-port": "^2.0.1",
     "lerna": "^7.1.4",
     "nx": "^16.6.0",
     "rimraf": "^5.0.1",
-    "dev-wrapper": "*"
+    "typescript": "5.3.3",
+    "vue-eslint-parser": "9.4.2"
   },
   "engines": {
     "node": ">=18",
     "yarn": "1.22.21"
   },
-  "packageManager": "yarn@1.22.21"
+  "packageManager": "yarn@1.22.21",
+  "resolutions": {
+    "strip-ansi": "^6.0.1"
+  }
 }
